@@ -1,38 +1,29 @@
-<div>
-    <h1>
+<div class="inner-content">
+    <h3>
         Networks
-    </h1>
+    </h3>
 
-    <hr>
-
-    <div class="input-group input-group">
-    <md-content layout-padding>
-       <form name="userForm">
-      <div layout layout-sm="column">
-    <md-input-container>
-      <label>Search Name</label>
-      <input ng-model="filter.name">
-    </md-input-container>
-   </form>
-  </md-content>
-    </div>
-
-    <br>
+    <form action="#">
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
+        <input class="mdl-textfield__input" type="text" id="search_query_networks" data-ng-model="query" />
+        <label class="mdl-textfield__label" for="search_query_networks">Search...</label>
+      </div>
+    </form>
 
     <div>
-        <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+        <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" width="100%">
             <thead>
                 <tr>
                     <th class="mdl-data-table__cell--non-numeric">Name</th>
                     <th class="mdl-data-table__cell--non-numeric">Description</th>
                     <th class="mdl-data-table__cell--non-numeric">CIDR</th>
-                    <th class="mdl-data-table__cell--non-numeric">DC</th>
+                    <th class="mdl-data-table__cell--non-numeric">Data Center</th>
                     <th class="mdl-data-table__cell--non-numeric">VLAN</th>
                 </tr>
             </thead>
             <tbody>
-                <tr data-ng-repeat="nw in networks | filter:filter:strict | orderBy:'name'" >
-                    <td class="mdl-data-table__cell--non-numeric">{{nw.name}}</td>
+                <tr data-ng-repeat="nw in networks | filter:query | orderBy:'name'">
+                    <td class="mdl-data-table__cell--non-numeric"><a ui-sref="network({name: nw.name})">{{nw.name}}</a></td>
                     <td class="mdl-data-table__cell--non-numeric">{{nw.description}}</td>
                     <td class="mdl-data-table__cell--non-numeric">{{nw.cidr}}</td>
                     <td class="mdl-data-table__cell--non-numeric">{{nw.dc}}</td>

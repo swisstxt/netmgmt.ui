@@ -36,6 +36,7 @@ angular
         templateUrl: 'views/networks/add.html',
         controller: 'AddCtrl'
       });
+      $urlRouterProvider.otherwise('/networks');
   }])
   .run(['Restangular', '$rootScope', '$location', '$http', function (Restangular, $rootScope, $location, $http) {
     $rootScope.baseUrl = 'http://127.0.0.1:8080/';

@@ -25,5 +25,9 @@ angular.module('netmgmt')
           });           
         };
 
+            $scope.search = function (row) {
+              return (angular.lowercase(row.name).indexOf($scope.query || '') !== -1 || angular.lowercase(row.description).indexOf($scope.query || '') !== -1 || angular.lowercase(row.cidr).indexOf($scope.query || '') !== -1 || angular.lowercase(row.dc).indexOf($scope.query || '') !== -1 || angular.lowercase(row.vlan.id).indexOf($scope.query || '') !== -1);
+            };
+
         $scope.reloadScope();    
   }]);

@@ -20,12 +20,17 @@ angular.module('netmgmt')
 
             $scope.reloadScope = function() {
               baseNetwork.getList('list').then(function(network) {
-            $scope.network = network;
+                $scope.network = network;
+              }, function errorCallback() {
+                console.log('Failed to fetch nodes from server');
+              });
 
-          }, function errorCallback() {
-            console.log('Failed to fetch nodes from server');
-          });
-        };
+            
+            };
 
-        $scope.reloadScope();
+            $scope.search = function (row) {
+              return (angular.lowercase(row.ip).indexOf($scope.query || '') !== -1 || angular.lowercase(row.desc).indexOf($scope.query || '') !== -1 || angular.lowercase(row.name).indexOf($scope.query || '') !== -1);
+            };
+
+            $scope.reloadScope();
   }]);
