@@ -1,0 +1,55 @@
+<div data-ui-view>
+    <h1>
+        Nodes
+    </h1>
+
+    <hr>
+
+    <div class="input-group input-group">
+    <md-content layout-padding>
+       <form name="userForm">
+      <div layout layout-sm="column">
+    <md-input-container>
+      <label>Search Name</label>
+      <input ng-model="filter.name">
+    </md-input-container>
+   </form>
+  </md-content>
+
+
+<button class="btn btn-primary pull-right hidden-print" data-ui-sref="network.add">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add
+        </button>
+
+
+
+    </div>
+
+    <br>
+
+    <div>
+        <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+            <thead>
+                <tr>
+                    <th class="mdl-data-table__cell--non-numeric">IP</th>
+                    <th class="mdl-data-table__cell--non-numeric">DNS A Record</th>
+                    <th class="mdl-data-table__cell--non-numeric">Description</th>
+                    <th class="mdl-data-table__cell--non-numeric">Pingable</th> 
+                    <th class="mdl-data-table__cell--non-numeric">Reserved</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr data-ng-repeat="node in network | filter:filter:strict | orderBy:'ip'" ng-if="node.name != '' || node.pingable || node.lock.comment != ''">
+                    <td class="mdl-data-table__cell--non-numeric">{{node.ip}}</td>
+                    <td class="mdl-data-table__cell--non-numeric">{{node.name}}</td>
+                    <td class="mdl-data-table__cell--non-numeric">{{node.desc | limitTo : 50}}</td>
+                    <td class="mdl-data-table__cell--non-numeric">
+                        <i class="material-icons" style="color: #01DFA5;" ng-if="node.pingable">check_box</i>
+                        <i class="material-icons" style="color: #FB8C00;" ng-if="!node.pingable">check_box_outline_blank</i>
+                    </td>
+                    <td class="mdl-data-table__cell--non-numeric">{{node.lock.comment}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div

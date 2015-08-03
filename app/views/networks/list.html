@@ -1,0 +1,44 @@
+<div>
+    <h1>
+        Networks
+    </h1>
+
+    <hr>
+
+    <div class="input-group input-group">
+    <md-content layout-padding>
+       <form name="userForm">
+      <div layout layout-sm="column">
+    <md-input-container>
+      <label>Search Name</label>
+      <input ng-model="filter.name">
+    </md-input-container>
+   </form>
+  </md-content>
+    </div>
+
+    <br>
+
+    <div>
+        <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+            <thead>
+                <tr>
+                    <th class="mdl-data-table__cell--non-numeric">Name</th>
+                    <th class="mdl-data-table__cell--non-numeric">Description</th>
+                    <th class="mdl-data-table__cell--non-numeric">CIDR</th>
+                    <th class="mdl-data-table__cell--non-numeric">DC</th>
+                    <th class="mdl-data-table__cell--non-numeric">VLAN</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr data-ng-repeat="nw in networks | filter:filter:strict | orderBy:'name'" >
+                    <td class="mdl-data-table__cell--non-numeric">{{nw.name}}</td>
+                    <td class="mdl-data-table__cell--non-numeric">{{nw.description}}</td>
+                    <td class="mdl-data-table__cell--non-numeric">{{nw.cidr}}</td>
+                    <td class="mdl-data-table__cell--non-numeric">{{nw.dc}}</td>
+                    <td class="mdl-data-table__cell--non-numeric">{{nw.vlan.name}} ({{nw.vlan.id}})</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div

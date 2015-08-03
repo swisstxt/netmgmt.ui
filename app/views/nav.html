@@ -1,0 +1,10 @@
+
+ <span class="mdl-layout-title">netmgmt</span>
+    <nav class="mdl-navigation">
+      <a class="mdl-navigation__link" ui-sref="dash">Dashboard</a>
+    <hr />
+      <a class="mdl-navigation__link" ui-sref="networks" ><b>Networks</b></a>
+      <a class="mdl-navigation__link" ui-sref="network({name: nw.name})" data-ng-repeat="nw in networks | filter:filter:strict | orderBy:'name'">{{nw.name}}</a>
+    <hr />
+      <a class="mdl-navigation__link" href="">Settings</a>
+    </nav>
