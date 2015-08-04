@@ -22,7 +22,6 @@ angular.module('netmgmt')
 
             baseNetwork.post("",{comment: $scope.comment}).then(function() {
               $scope.$parent.reloadScope();
-              console.log("posted");
               $location.path('/networks/' + $scope.$nwName);
             }, function errorCallback() {
               console.log("could not post");

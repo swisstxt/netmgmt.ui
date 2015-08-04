@@ -14,7 +14,31 @@
     </form>
 
 
-    <div>
+    <div ng-if="loading">
+        Loading...
+    </div>
+
+    <div ng-if="hasRes && !loading">
+        <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" width="100%">
+            <thead>
+                <tr>
+                    <th class="mdl-data-table__cell--non-numeric">IP</th>
+                    <th class="mdl-data-table__cell--non-numeric">Reserved</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr data-ng-repeat="node in network | filter:query | orderBy:'ip'" ng-if="node.lock.comment != ''">
+                    <td class="mdl-data-table__cell--non-numeric">{{node.ip}}</td>
+                    <td class="mdl-data-table__cell--non-numeric">{{node.lock.comment}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <br />
+        <br />
+    </div>
+
+
+    <div ng-if="!loading">
         <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" width="100%">
             <thead>
                 <tr>
@@ -26,13 +50,13 @@
                 </tr>
             </thead>
             <tbody>
-                <tr data-ng-repeat="node in network | filter:query | orderBy:'ip'" ng-if="node.name != '' || node.pingable || node.lock.comment != ''">
+                <tr data-ng-repeat="node in network | filter:query | orderBy:'ip'" ng-if="node.name != '' || node.pingable">
                     <td class="mdl-data-table__cell--non-numeric">{{node.ip}}</td>
                     <td class="mdl-data-table__cell--non-numeric">{{node.name}}</td>
                     <td class="mdl-data-table__cell--non-numeric">{{node.desc | limitTo: 30}}</td>
                     <td class="mdl-data-table__cell--non-numeric">
                         <i class="material-icons" style="color: #01DFA5;" ng-if="node.pingable">check</i>
-                        <i class="material-icons" style="color: #FB8C00;" ng-if="!node.pingable">closek</i>
+                        <i class="material-icons" style="color: #FB8C00;" ng-if="!node.pingable">close</i>
                     </td>
                     <td class="mdl-data-table__cell--non-numeric">{{node.lock.comment}}</td>
                 </tr>

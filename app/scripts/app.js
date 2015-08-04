@@ -21,6 +21,11 @@ angular
         templateUrl: 'views/dash.html',
         controller: 'DashCtrl'
       })
+      .state('settings', {
+        url: '/settings',
+        templateUrl: 'views/settings.html',
+        controller: 'SettingsCtrl'
+      })
       .state('networks', {
         url: '/networks',
         templateUrl: 'views/networks/list.html',
@@ -39,7 +44,7 @@ angular
       $urlRouterProvider.otherwise('/networks');
   }])
   .run(['Restangular', '$rootScope', '$location', '$http', function (Restangular, $rootScope, $location, $http) {
-    $rootScope.baseUrl = 'http://127.0.0.1:8080/';
+    $rootScope.baseUrl = 'http://devops-01.stxt.media.int:8080/';
     Restangular.setBaseUrl($rootScope.baseUrl);
 
 

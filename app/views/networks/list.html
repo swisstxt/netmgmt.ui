@@ -26,7 +26,7 @@
                     <td class="mdl-data-table__cell--non-numeric"><a ui-sref="network({name: nw.name})">{{nw.name}}</a></td>
                     <td class="mdl-data-table__cell--non-numeric">{{nw.description}}</td>
                     <td class="mdl-data-table__cell--non-numeric">{{nw.cidr}}</td>
-                    <td class="mdl-data-table__cell--non-numeric">{{nw.dc}}</td>
+                    <td class="mdl-data-table__cell--non-numeric">{{nw.dc | uppercase}}</td>
                     <td class="mdl-data-table__cell--non-numeric">{{nw.vlan.name}} ({{nw.vlan.id}})</td>
                 </tr>
             </tbody>

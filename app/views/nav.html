@@ -1,4 +1,4 @@
       <a class="mdl-navigation__link" ui-sref="networks" ><b>Networks</b></a>
       <a class="mdl-navigation__link" ui-sref="network({name: nw.name})" data-ng-repeat="nw in networks | filter:filter:strict | orderBy:'name'">{{nw.name}}</a>
     <hr />
-      <a class="mdl-navigation__link" href="">Settings</a>
+      <a class="mdl-navigation__link" ui-sref="settings">Settings</a>
