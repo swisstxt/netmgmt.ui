@@ -28,7 +28,7 @@ angular.module('netmgmt')
             });
 
           } else {
-            console.log("name not set");
+            alert("No comment given");
           }
         };
 

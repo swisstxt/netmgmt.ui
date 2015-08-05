@@ -17,7 +17,7 @@ angular.module('netmgmt')
       function ($scope, Restangular, $state, $stateParams) {
             var baseNetworks = Restangular.all('networks');
             $scope.reloadScope = function() {
-              baseNetworks.getList('list').then(function(networks) {
+              baseNetworks.getList().then(function(networks) {
                 $scope.networks = networks;
               }, function errorCallback() {
                 consle.log('Failed to fetch networks from server');

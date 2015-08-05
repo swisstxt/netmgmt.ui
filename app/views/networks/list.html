@@ -19,6 +19,7 @@
                     <th class="mdl-data-table__cell--non-numeric">CIDR</th>
                     <th class="mdl-data-table__cell--non-numeric">Data Center</th>
                     <th class="mdl-data-table__cell--non-numeric">VLAN</th>
+                    <th class="mdl-data-table__cell--non-numeric">% Free IPs in Net</th>
                 </tr>
             </thead>
             <tbody>
@@ -28,6 +29,8 @@
                     <td class="mdl-data-table__cell--non-numeric">{{nw.cidr}}</td>
                     <td class="mdl-data-table__cell--non-numeric">{{nw.dc | uppercase}}</td>
                     <td class="mdl-data-table__cell--non-numeric">{{nw.vlan.name}} ({{nw.vlan.id}})</td>
+                    <td class="mdl-data-table__cell--non-numeric" data-ng-if="!(nw.utilization.free_percent == 0 && nw.utilization.used_percent == 0)">{{nw.utilization.free_percent}}%</td>
+                    <td class="mdl-data-table__cell--non-numeric" data-ng-if="nw.utilization.free_percent == 0 && nw.utilization.used_percent == 0">Not Yet Scanned</td>
                 </tr>
             </tbody>
         </table>
