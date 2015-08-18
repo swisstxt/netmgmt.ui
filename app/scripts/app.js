@@ -28,23 +28,23 @@ angular
       })
       .state('networks', {
         url: '/networks',
-        templateUrl: 'views/networks/list.html',
+        templateUrl: 'views/networks.list.html',
         controller: 'NetworksListCtrl'
       })
       .state('network', {
         url: '/networks/:name',
-        templateUrl: 'views/networks/show.html',
+        templateUrl: 'views/networks.show.html',
         controller: 'NetworkListCtrl'
       })
       .state('network.add', {
         url: '/reserve',
-        templateUrl: 'views/networks/add.html',
+        templateUrl: 'views/networks.add.html',
         controller: 'AddCtrl'
       });
       $urlRouterProvider.otherwise('/networks');
   }])
   .run(['Restangular', '$rootScope', '$location', '$http', function (Restangular, $rootScope, $location, $http) {
-    $rootScope.baseUrl = 'http://devops-01.stxt.media.int:8080/';
+    $rootScope.baseUrl = 'http://netmgmt.stxt.media.int:9001/';
     Restangular.setBaseUrl($rootScope.baseUrl);
 
 
