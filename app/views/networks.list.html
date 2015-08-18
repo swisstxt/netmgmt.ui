@@ -1,0 +1,38 @@
+<div class="inner-content">
+    <h3>
+        Networks
+    </h3>
+
+    <form action="#">
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
+        <input class="mdl-textfield__input" type="text" id="search_query_networks" data-ng-model="query" />
+        <label class="mdl-textfield__label" for="search_query_networks">Search...</label>
+      </div>
+    </form>
+
+    <div>
+        <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" width="100%">
+            <thead>
+                <tr>
+                    <th class="mdl-data-table__cell--non-numeric">Name</th>
+                    <th class="mdl-data-table__cell--non-numeric">Description</th>
+                    <th class="mdl-data-table__cell--non-numeric">CIDR</th>
+                    <th class="mdl-data-table__cell--non-numeric">Data Center</th>
+                    <th class="mdl-data-table__cell--non-numeric">VLAN</th>
+                    <th class="mdl-data-table__cell--non-numeric">Utilization</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr data-ng-repeat="nw in networks | filter:query | orderBy:'name'">
+                    <td class="mdl-data-table__cell--non-numeric"><a ui-sref="network({name: nw.name})">{{nw.name}}</a></td>
+                    <td class="mdl-data-table__cell--non-numeric">{{nw.description}}</td>
+                    <td class="mdl-data-table__cell--non-numeric">{{nw.cidr}}</td>
+                    <td class="mdl-data-table__cell--non-numeric">{{nw.dc | uppercase}}</td>
+                    <td class="mdl-data-table__cell--non-numeric">{{nw.vlan.name}} ({{nw.vlan.id}})</td>
+                    <td class="mdl-data-table__cell--non-numeric" data-ng-if="!(nw.utilization.free_percent == 0 && nw.utilization.used_percent == 0)">{{nw.utilization.free_percent}}% Free</td>
+                    <td class="mdl-data-table__cell--non-numeric" data-ng-if="nw.utilization.free_percent == 0 && nw.utilization.used_percent == 0">Not Yet Scanned</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
