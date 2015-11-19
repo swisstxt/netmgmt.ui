@@ -51,7 +51,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr data-ng-repeat="node in network | filter:query | orderBy:'ip'" ng-if="!node.free">
+                <tr data-ng-repeat="node in network | filter:query | orderBy:ipOrder" ng-if="!node.free">
                     <td class="mdl-data-table__cell--non-numeric">{{node.ip}}</td>
                     <td class="mdl-data-table__cell--non-numeric">{{node.name}}</td>
                     <td class="mdl-data-table__cell--non-numeric">{{node.desc | limitTo: 30}}</td>
@@ -59,7 +59,7 @@
                         <i class="material-icons" style="color: #01DFA5;" ng-if="node.pingable">check</i>
                         <i class="material-icons" style="color: #FB8C00;" ng-if="!node.pingable">close</i>
                     </td>
-                    <td class="mdl-data-table__cell--non-numeric">{{node.lock.comment}}</td>
+                    <td class="mdl-data-table__cell--non-numeric">{{node.lock.comment}}{{node.unmanaged}}</td>
                 </tr>
             </tbody>
         </table>

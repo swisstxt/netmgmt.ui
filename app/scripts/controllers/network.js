@@ -45,5 +45,14 @@ angular.module('netmgmt')
                 $scope.hasRes = false;
             };
 
+            $scope.ipOrder = function(row){
+                var octets = (row.ip).split(".");
+                return (
+                    (parseInt(octets[0])*Math.pow(256,3))+
+                    (parseInt(octets[1])*Math.pow(256,2))+
+                    (parseInt(octets[2])*256)+
+                    parseInt(octets[3]));
+            };
+
             $scope.reloadScope();
   }]);
