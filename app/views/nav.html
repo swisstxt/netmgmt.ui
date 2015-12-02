@@ -1,4 +1,4 @@
       <a class="mdl-navigation__link" ui-sref="networks" ><b>Networks</b></a>
-      <a class="mdl-navigation__link" ui-sref="network({name: nw.name})" data-ng-repeat="nw in networks | filter:filter:strict | orderBy:'[dc,name]'">{{nw.name}} ({{nw.dc| uppercase}})<br><i>{{nw.cidr}}</i></a>
+      <a class="mdl-navigation__link" ui-sref="network({name: nw.name})" data-ng-repeat="nw in networks | filter:filter:strict | orderBy:'[dc,name]'">{{nw.name}} ({{nw.dc| uppercase}})</a>
     <hr />
       <a class="mdl-navigation__link" ui-sref="settings">Settings</a>

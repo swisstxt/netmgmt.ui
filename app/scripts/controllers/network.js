@@ -16,7 +16,9 @@ angular.module('netmgmt')
           '$stateParams',
       function ($scope, Restangular, $state, $stateParams) {
             $scope.name = $stateParams.name;
+
             var baseNetwork = Restangular.one('networks',  $scope.name);
+
             $scope.loading = true;
             $scope.hasRes = false;
 
@@ -27,6 +29,12 @@ angular.module('netmgmt')
                 $scope.loading = false;
               }, function errorCallback() {
                 console.log('Failed to fetch nodes from server');
+              });
+
+              baseNetwork.get().then(function(nw) {
+                $scope.nw = nw;
+              }, function errorCallback() {
+                console.log('Failed to fetch network from server');
               });
             };
 
