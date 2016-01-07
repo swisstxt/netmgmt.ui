@@ -1,27 +1,28 @@
-<div class="gray-bg">
-  <div class="add-box mdl-card mdl-shadow--2dp demo-card-event">
+<div class="gray-bg" after-render="missionCompled" >
+<div class="add-box mdl-card mdl-shadow--2dp demo-card-event">
 
     <div class="mdl-card__title">
-      <h2 class="mdl-card__title-text">IP Reservation in {{name}}</h2>
+        <h2 class="mdl-card__title-text">IP Reservation in {{name}}</h2>
     </div>
 
     <div class="mdl-card__supporting-text">
-      <form action="#">
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
-          <input class="mdl-textfield__input" type="text" id="comment" data-ng-model="comment" />
-          <label class="mdl-textfield__label" for="comment">Add Comment...</label>
-        </div>
-      </form>
+        <form action="#">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" id="comment_{{name}}" data-ng-model="comment" />
+                <label class="mdl-textfield__label" for="comment_{{name}}">Add Comment...</label>
+            </div>
+        </form>
     </div>
 
     <div class="mdl-card__actions mdl-card--border" align="right">
-      <a class="mdl-button mdl-js-button mdl-js-ripple-effect" href="#/networks/{{name}}">
-        Cancel
-      </a>
-      <a class="mdl-button mdl-js-button mdl-button--raised mdl-button--color" data-ng-click="addReservation()">
-        Get Reservation
-      </a>
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect" href="#/networks/{{name}}">
+            Cancel
+        </a>
+        <a class="mdl-button mdl-js-button mdl-button--raised mdl-button--color" data-ng-click="addReservation()">
+            Get Reservation
+        </a>
     </div>
 
-  </div>
 </div>
+</div>
+<script>componentHandler.upgradeAllRegistered();</script>

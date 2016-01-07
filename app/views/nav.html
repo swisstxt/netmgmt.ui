@@ -1,7 +1,7 @@
-      <span class="mdl-navigation__link"><b>Networks Managed</b></span>
-      <a class="mdl-navigation__link" ui-sref="network({name: nw.name})" data-ng-if="nw.managed" data-ng-repeat="nw in networks | filter:filter:strict | orderBy:'[dc,name]'">{{nw.name}} ({{nw.dc| uppercase}})</a>
-    <hr />
-      <span class="mdl-navigation__link"><b>Networks Unmanaged</b></span>
-      <a class="mdl-navigation__link" ui-sref="network({name: nw.name})" data-ng-if="!nw.managed" data-ng-repeat="nw in networks | filter:filter:strict | orderBy:'[dc,name]'">{{nw.name}} ({{nw.dc| uppercase}})</a>
-    <hr />
-      <a class="mdl-navigation__link" ui-sref="settings">Settings</a>
+<span class="mdl-navigation__link"><b>Networks Managed</b></span>
+<a class="mdl-navigation__link" ui-sref="network({name: nw.name})" data-ng-if="nw.managed" data-ng-repeat="nw in networks | filter:filter:strict | orderBy:'[dc,name]'">{{nw.name}} ({{nw.dc| uppercase}})</a>
+<hr />
+<span class="mdl-navigation__link"><b>Networks Unmanaged</b></span>
+<a class="mdl-navigation__link" ui-sref="network({name: nw.name})" data-ng-if="!nw.managed" data-ng-repeat="nw in networks | filter:filter:strict | orderBy:'[dc,name]'">{{nw.name}} ({{nw.dc| uppercase}})</a>
+<hr />
+<a class="mdl-navigation__link" ui-sref="settings">Settings</a>
