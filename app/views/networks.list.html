@@ -25,7 +25,9 @@
             <tbody>
                 <tr data-ng-repeat="nw in networks | filter:query | orderBy:'name'">
                     <td class="mdl-data-table__cell--non-numeric"><a ui-sref="network({name: nw.name})">{{nw.name}}</a></td>
-                    <td class="mdl-data-table__cell--non-numeric">{{nw.description}}</td>
+                    <td class="mdl-data-table__cell--non-numeric">
+                        {{nw.description}}&nbsp;<i data-ng-if="!nw.managed">(unmanaged)</i>
+                    </td>
                     <td class="mdl-data-table__cell--non-numeric">{{nw.cidr}}</td>
                     <td class="mdl-data-table__cell--non-numeric">{{nw.dc | uppercase}}</td>
                     <td class="mdl-data-table__cell--non-numeric">{{nw.vlan.name}} ({{nw.vlan.id}})</td>
