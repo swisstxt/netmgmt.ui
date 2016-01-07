@@ -40,6 +40,11 @@ angular
         url: '/reserve',
         templateUrl: 'views/networks.add.html',
         controller: 'AddCtrl'
+    })
+    .state('network.details', {
+        url: '/details',
+        templateUrl: 'views/networks.details.html',
+        controller: 'DetailsCtrl'
     });
     $urlRouterProvider.otherwise('/networks');
 }])

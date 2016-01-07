@@ -71,3 +71,16 @@ a {
 *:focus {
     outline: 0;
 }
+
+table.details tr > td.label {
+    font-weight: bold;
+    vertical-align: top;
+}
+
+.details_box {
+    display: none;
+}
+
+.fr_block {
+    margin-bottom: 8px;
+}

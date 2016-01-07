@@ -1,72 +1,130 @@
 <div class="inner-content">
-    <h3>
-        Network {{name}} <i>({{nw.cidr}} - {{nw.dc|uppercase}})</i>
-    </h3>
+<h3>
+    Network {{name}} <i>({{nw.cidr}} - {{nw.dc|uppercase}})</i>
+    <span style="float: right;">
+        <button class="mdl-button mdl-js-button mdl-button--raised" onclick="$('.details_box').toggle();">Toggle Details</button>
+    </span>
+</h3>
 
+<div class="details_box">
+    <table class="details mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+        <tr>
+            <td class="label">Name</td>
+            <td class="value mdl-data-table__cell--non-numeric">{{nw.name}}</td>
+        </tr>
+        <tr>
+            <td class="label">CIDR</td>
+            <td class="value mdl-data-table__cell--non-numeric">{{nw.cidr}}</td>
+        </tr>
+        <tr>
+            <td class="label">Data Center</td>
+            <td class="value mdl-data-table__cell--non-numeric">{{nw.dc | uppercase}}</td>
+        </tr>
+        <tr>
+            <td class="label">Gateway</td>
+            <td class="value mdl-data-table__cell--non-numeric">{{nw.gateway}}</td>
+        </tr>
+        <tr>
+            <td class="label">DNS</td>
+            <td class="value mdl-data-table__cell--non-numeric">
+                <span data-ng-repeat="dnserver in nw.dns">{{dnserver}}<br></span>
+            </td>
+        </tr>
+        <tr>
+            <td class="label">Foreign Ranges</td>
+            <td class="value mdl-data-table__cell--non-numeric">
+                <div class="fr_block" data-ng-repeat="range in nw.foreign_ranges">
+                    <b>{{range.description}}</b><br>
+                    <span>Start: {{range.range.start}}</span><br>
+                    <span>End: {{range.range.end}}</span><br>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="label">DHCP Ranges</td>
+            <td class="value mdl-data-table__cell--non-numeric">
+                <div class="fr_block" data-ng-repeat="range in nw.dhcp">
+                    <span>Start: {{range.start}}</span><br>
+                    <span>End: {{range.end}}</span><br>
+                </div>
+            </td>
 
-   <div data-ui-view></div>
+        </tr>
+        <tr>
+            <td class="label">VLAN</td>
+            <td class="value mdl-data-table__cell--non-numeric">
+                <div class="fr_block">
+                    <span>Name: {{nw.vlan.name}}</span><br>
+                    <span>ID: {{nw.vlan.id}}</span><br>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
 
-    <form action="#">
-      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+<div data-ui-view></div>
+
+<form action="#">
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
         <input class="mdl-textfield__input" type="text" id="search_query_network_{{name}}" data-ng-model="query" />
         <label class="mdl-textfield__label" for="search_query_network_{{name}}">Seach...</label>
-      </div>
-    </form>
-
-
-    <div ng-if="loading">
-        Loading...
     </div>
-
-    <div ng-if="hasRes && !loading">
-        <h5>Reservations</h5>
-        <table class="mdl-data-table mdl-js-data-table mdl-shadow--8dp" width="100%">
-            <thead>
-                <tr>
-                    <th class="mdl-data-table__cell--non-numeric">IP</th>
-                    <th class="mdl-data-table__cell--non-numeric">Reserved</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr data-ng-repeat="node in network | filter:query | orderBy:'ip'" ng-if="node.lock.comment != ''">
-                    <td class="mdl-data-table__cell--non-numeric">{{node.ip}}</td>
-                    <td class="mdl-data-table__cell--non-numeric">{{node.lock.comment}}</td>
-                </tr>
-            </tbody>
-        </table>
-        <br />
-        <br />
-    </div>
+</form>
 
 
-    <div ng-if="!loading">
-        <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" width="100%">
-            <thead>
-                <tr>
-                    <th class="mdl-data-table__cell--non-numeric">IP</th>
-                    <th class="mdl-data-table__cell--non-numeric">DNS A Record</th>
-                    <th class="mdl-data-table__cell--non-numeric">Description</th>
-                    <th class="mdl-data-table__cell--non-numeric">Pingable</th>
-                    <th class="mdl-data-table__cell--non-numeric">Reserved</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr data-ng-repeat="node in network | filter:query | orderBy:ipOrder" ng-if="!node.free">
-                    <td class="mdl-data-table__cell--non-numeric">{{node.ip}}</td>
-                    <td class="mdl-data-table__cell--non-numeric">{{node.name}}</td>
-                    <td class="mdl-data-table__cell--non-numeric">{{node.desc | limitTo: 30}}</td>
-                    <td class="mdl-data-table__cell--non-numeric">
-                        <i class="material-icons" style="color: #01DFA5;" ng-if="node.pingable">check</i>
-                        <i class="material-icons" style="color: #FB8C00;" ng-if="!node.pingable">close</i>
-                    </td>
-                    <td class="mdl-data-table__cell--non-numeric">{{node.lock.comment}}{{node.unmanaged}}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+<div ng-if="loading">
+    Loading...
+</div>
 
-    <button data-ng-show="nw.managed" class="floating-btn mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" data-ui-sref="network.add">
-      <i class="material-icons">add</i>
-    </button>
+<div ng-if="hasRes && !loading">
+    <h5>Reservations</h5>
+    <table class="mdl-data-table mdl-js-data-table mdl-shadow--8dp" width="100%">
+        <thead>
+            <tr>
+                <th class="mdl-data-table__cell--non-numeric">IP</th>
+                <th class="mdl-data-table__cell--non-numeric">Reserved</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr data-ng-repeat="node in network | filter:query | orderBy:'ip'" ng-if="node.lock.comment != ''">
+                <td class="mdl-data-table__cell--non-numeric">{{node.ip}}</td>
+                <td class="mdl-data-table__cell--non-numeric">{{node.lock.comment}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <br />
+    <br />
+</div>
+
+
+<div ng-if="!loading">
+    <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" width="100%">
+        <thead>
+            <tr>
+                <th class="mdl-data-table__cell--non-numeric">IP</th>
+                <th class="mdl-data-table__cell--non-numeric">DNS A Record</th>
+                <th class="mdl-data-table__cell--non-numeric">Description</th>
+                <th class="mdl-data-table__cell--non-numeric">Pingable</th>
+                <th class="mdl-data-table__cell--non-numeric">Reserved</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr data-ng-repeat="node in network | filter:query | orderBy:ipOrder" ng-if="!node.free">
+                <td class="mdl-data-table__cell--non-numeric">{{node.ip}}</td>
+                <td class="mdl-data-table__cell--non-numeric">{{node.name}}</td>
+                <td class="mdl-data-table__cell--non-numeric">{{node.desc | limitTo: 30}}</td>
+                <td class="mdl-data-table__cell--non-numeric">
+                    <i class="material-icons" style="color: #01DFA5;" ng-if="node.pingable">check</i>
+                    <i class="material-icons" style="color: #FB8C00;" ng-if="!node.pingable">close</i>
+                </td>
+                <td class="mdl-data-table__cell--non-numeric">{{node.lock.comment}}{{node.unmanaged}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<button data-ng-show="nw.managed" class="floating-btn mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" data-ui-sref="network.add">
+    <i class="material-icons">add</i>
+</button>
 </div>
 <script>componentHandler.upgradeAllRegistered();</script>
