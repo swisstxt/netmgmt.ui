@@ -114,6 +114,16 @@ module.exports = function (grunt) {
           ]
         }]
       },
+      distObsolete: {
+        files: [{
+          dot: true,
+          src: [
+            '.tmp',
+            '<%= config.dist %>/{,*/}*',
+            '!<%= config.dist %>/index.html*'
+          ]
+        }]
+      },
       server: '.tmp'
     },
 
@@ -335,6 +345,13 @@ module.exports = function (grunt) {
                 dest: '<%= config.dist %>/styles'
             }
         },
+'ng_template': {
+      files : ['<%= config.dist %>/views'],
+      options: {
+        appDir : '<%= config.dist %>',
+        indexFile : 'index.html'
+      }
+    },
 
     // By default, your `index.html`'s <!-- Usemin block --> will take care
     // of minification. These next options are pre-configured if you do not
@@ -447,9 +464,11 @@ module.exports = function (grunt) {
     'copy:dist',
     'filerev',
     'usemin',
+    'ng_template',
     'regex-replace:dist:requirejs-onefile',
     'cssUrlEmbed',
-    'smoosher'
+    'smoosher',
+    'clean:distObsolete'
     //'htmlmin'
   ]);
 
