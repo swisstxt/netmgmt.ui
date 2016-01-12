@@ -15,7 +15,8 @@ module.exports = function (grunt) {
 
   // Automatically load required grunt tasks
   require('jit-grunt')(grunt, {
-      useminPrepare: 'grunt-usemin'
+      useminPrepare: 'grunt-usemin',
+      smoosher: 'grunt-html-smoosher-install-fix'
   });
 
   // Configurable paths
@@ -302,6 +303,38 @@ module.exports = function (grunt) {
         }]
       }
     },
+        smoosher: {
+            all: {
+                files: {
+                    '<%= config.dist %>/index.html': '<%= config.dist %>/index.html',
+                },
+            },
+        },
+        'regex-replace': {
+            dist: {
+                src: ['<%= config.dist %>/index.html'],
+                actions: [
+                    {
+                        name: 'requirejs-onefile',
+                        search: '<script data-main=".*" src="bower_components/requirejs/require.js"></script>',
+                        replace: function(match){
+                            var regex = /scripts\/.*main/;
+                            var result = regex.exec(match);
+                            return '<script src="' + result[0] + '.js"></script>';
+                        },
+                        flags: 'g'
+                    }
+                ]
+            },
+        },
+        cssUrlEmbed: {
+            encode: {
+                expand: true,
+                cwd: '<%= config.dist %>/styles',
+                src: [ '**/*.css' ],
+                dest: '<%= config.dist %>/styles'
+            }
+        },
 
     // By default, your `index.html`'s <!-- Usemin block --> will take care
     // of minification. These next options are pre-configured if you do not
@@ -414,7 +447,10 @@ module.exports = function (grunt) {
     'copy:dist',
     'filerev',
     'usemin',
-    'htmlmin'
+    'regex-replace:dist:requirejs-onefile',
+    'cssUrlEmbed',
+    'smoosher'
+    //'htmlmin'
   ]);
 
   grunt.registerTask('default', [
