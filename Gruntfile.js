@@ -333,7 +333,13 @@ module.exports = function (grunt) {
                             return '<script src="' + result[0] + '.js"></script>';
                         },
                         flags: 'g'
-                    }
+                    },
+          {
+            name: 'api',
+            search: '.baseUrl\=\"http:\/\/.*\/\",',
+            replace: '.baseUrl="[[[.Api]]]/",',
+            flags: 'g'
+          }
                 ]
             },
         },
@@ -468,6 +474,7 @@ module.exports = function (grunt) {
     'regex-replace:dist:requirejs-onefile',
     'cssUrlEmbed',
     'smoosher',
+    'regex-replace:dist:api',
     'clean:distObsolete'
     //'htmlmin'
   ]);
