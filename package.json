@@ -17,7 +17,7 @@
     "grunt-css-url-embed": "^1.6.1",
     "grunt-eslint": "^19.0.0",
     "grunt-filerev": "^2.3.1",
-    "grunt-html-smoosher-install-fix": "^0.1.4",
+    "grunt-inline": "^0.3.6",
     "grunt-mocha": "^1.0.2",
     "grunt-newer": "^1.2.0",
     "grunt-ng-template": "^0.1.1",
