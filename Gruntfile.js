@@ -473,7 +473,7 @@ tasks: ['newer:copy:styles', 'postcss']
         'ng_template',
         'regex-replace:dist:requirejs-onefile',
         'cssUrlEmbed',
-        'smoosher',
+        //'smoosher',
         'regex-replace:dist:api',
         'clean:distObsolete'
         //'htmlmin'
