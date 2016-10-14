@@ -45,6 +45,11 @@ angular
         url: '/details',
         templateUrl: 'views/networks.details.html',
         controller: 'DetailsCtrl'
+    })
+    .state('nodes', {
+        url: '/nodes',
+        templateUrl: 'views/nodes.html',
+        controller: 'NodesCtrl'
     });
     $urlRouterProvider.otherwise('/networks');
 }])
