@@ -1,0 +1,67 @@
+<div class="inner-content">
+    <h3>
+        Node Lookup
+    </h3>
+
+    <form ng-submit="fetchNodeInfo()">
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <input class="mdl-textfield__input" type="text" id="search_query_node" data-ng-model="nodename" />
+        <label class="mdl-textfield__label" for="search_query_node">Node Name...</label>
+      </div>
+
+      <div class="mdl-textfield mdl-js-textfield">
+        <input class="mdl-textfield__input" type="text" id="search_query_domain" data-ng-model="domain" data-ng-init="domain = 'stxt.media.int'" />
+        <label class="mdl-textfield__label" for="search_query_domain"></label>
+      </div>
+
+      <button type="submit" id="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+        Lookup!
+      </button>
+    </form>
+
+    <div data-ng-if="success && queried">
+        <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" width="100%">
+            <thead>
+                <tr>
+                    <th class="mdl-data-table__cell--non-numeric">Key</th>
+                    <th class="mdl-data-table__cell--non-numeric">Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="mdl-data-table__cell--non-numeric">Network Name</td>
+                    <td class="mdl-data-table__cell--non-numeric">{{node.name}}</td>
+                </tr>
+                <tr>
+                    <td class="mdl-data-table__cell--non-numeric">Network Description</td>
+                    <td class="mdl-data-table__cell--non-numeric">{{node.description}}</td>
+                </tr>
+                <tr>
+                    <td class="mdl-data-table__cell--non-numeric">Network CIDR</td>
+                    <td class="mdl-data-table__cell--non-numeric">{{node.cidr}}</td>
+                </tr>
+                <tr>
+                    <td class="mdl-data-table__cell--non-numeric">Datacenter</td>
+                    <td class="mdl-data-table__cell--non-numeric">{{node.dc}}</td>
+                </tr>
+                <tr>
+                    <td class="mdl-data-table__cell--non-numeric">Network Gateway</td>
+                    <td class="mdl-data-table__cell--non-numeric">{{node.gateway}}</td>
+                </tr>
+                <tr>
+                    <td class="mdl-data-table__cell--non-numeric">VLAN Details</td>
+                    <td class="mdl-data-table__cell--non-numeric">{{node.vlan.name}} ({{node.vlan.id}})</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="mdl-typography--display-title" data-ng-if="!success && queried">
+        Node <b>{{failed_nodename}}</b> not found
+    </div>
+
+    <div class="mdl-typography--display-title" data-ng-if="!queried">
+      Enter a node name and get details
+    </div>
+</div>
+<script>componentHandler.upgradeAllRegistered();</script>
