@@ -23,7 +23,7 @@ angular.module('netmgmt')
         $scope.hasRes = false;
 
         $scope.reloadScope = function() {
-            baseNetwork.getList('list').then(function(network) {
+            baseNetwork.getList('ips').then(function(network) {
                 $scope.network = network;
                 $scope.hasReservation(network);
                 $scope.loading = false;
