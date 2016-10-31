@@ -15,8 +15,7 @@ module.exports = function (grunt) {
 
     // Automatically load required grunt tasks
     require('jit-grunt')(grunt, {
-        useminPrepare: 'grunt-usemin',
-        smoosher: 'grunt-html-smoosher-install-fix'
+        useminPrepare: 'grunt-usemin'
     });
 
     // Configurable paths
@@ -313,11 +312,13 @@ tasks: ['newer:copy:styles', 'postcss']
                 }]
             }
         },
-        smoosher: {
-            all: {
-                files: {
-                    '<%= config.dist %>/index.html': '<%= config.dist %>/index.html',
+        inline: {
+            dist: {
+                options:{
+                    tag: ''
                 },
+                src: '<%= config.dist %>/index.html',
+                dest: '<%= config.dist %>/index.html'
             },
         },
         'regex-replace': {
@@ -473,7 +474,7 @@ tasks: ['newer:copy:styles', 'postcss']
         'ng_template',
         'regex-replace:dist:requirejs-onefile',
         'cssUrlEmbed',
-        'smoosher',
+        'inline',
         'regex-replace:dist:api',
         'clean:distObsolete'
         //'htmlmin'
